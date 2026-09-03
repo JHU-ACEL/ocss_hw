@@ -1,5 +1,5 @@
 # Docker 
-
+For Windows and Mac you will need to install [Docker Desktop](https://docs.docker.com/desktop/)
 ### Build Docker Image
 Run this in the home repo to build the image
 ```bash
