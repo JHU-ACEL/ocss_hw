@@ -23,13 +23,9 @@ apt install dos2unix
 ```
 2 - Navigate to the "docker" folder inside the directory where you cloned the repository, e.g:
 ```bash
- cd /mnt/c/github/trajdesign_hw1/docker
+ cd /mnt/c/github/ocss_hw/docker
 ```
-3 - Run the dos2unix command to convert the .sh scripts
-```bash
- dos2unix docker_build.sh docker_run.sh
-```
-4 - Navigate inside the setup folder and run the following command
+3 - Navigate inside the setup folder and run the following command
 ```bash
  cd setup
  dos2unix  install_acados.sh install_tera_renderer.sh
