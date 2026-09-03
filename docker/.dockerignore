@@ -1,0 +1,12 @@
+# git
+.git
+.gitignore
+.gitattributes
+
+# python
+**/__pycache__/
+
+# Docker files
+Dockerfile*
+compose*.yaml
+.env
