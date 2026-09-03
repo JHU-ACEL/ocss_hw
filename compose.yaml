@@ -1,0 +1,34 @@
+name: ocss
+services:
+  cli:
+   image: ocss:latest
+   build:
+     context: .
+     dockerfile: docker/Dockerfile
+     target: base
+     args:
+       PYTHON_VERSION: "3.12"
+#       CUDA_VERSION: "13"
+   stdin_open: true
+   tty: true
+   ipc: host
+   privileged: True
+   ports:
+    - "${MARIMO_PORT:-8888}:${MARIMO_PORT:-8888}"
+    - "${NOVNC_HOST_PORT:-6080}:6080"
+   environment:
+     - DISPLAY=:1
+     - QT_X11_NO_MITSHM=1
+     - PORT=${MARIMO_PORT:-8888}
+   shm_size: '512mb'
+#   deploy:
+#     resources:
+#       reservations:
+#          devices:
+#            - driver: nvidia
+#              count: 1
+#              capabilities: [gpu]
+   volumes:
+    - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    - .:/workspace/ # mount home directory to container workspace
+   command: /bin/bash
