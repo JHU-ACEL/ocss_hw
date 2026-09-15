@@ -21,7 +21,7 @@ def _(mo):
 
     A core component of the optimization solvers that we will be implementing in this class is the underlying linear solve used to solve systems of the form $Ax = b$. The performance of these solvers drive the runtime, precision, and robustness of the optimization solvers themselves.
 
-    In this problem, you will implement a version of the [preconditioned conjugate gradient (PCG) solver](http://luthuli.cs.uiuc.edu/~daf/courses/Opt-2017/Papers/painless-conjugate-gradient.pdf), an iterative solver for linear systems $Ax = b$ when A is a positive semidefinite matrix (i.e., $A\in\mathbb{S}_+^n$).
+    In this problem, you will implement a version of the [preconditioned conjugate gradient (PCG) solver](https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf), an iterative solver for linear systems $Ax = b$ when A is a positive semidefinite matrix (i.e., $A\in\mathbb{S}_+^n$).
     """)
     return
 
