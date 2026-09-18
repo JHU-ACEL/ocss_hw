@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="magneto_mars">
+  <compiler angle="degree" meshdir="." />
+  <option gravity="0 0 -3.71" timestep="0.002" />
+  <visual>
+    <headlight ambient="0.5 0.5 0.5" />
+  </visual>
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1="0.8 0.6 0.4" rgb2="0.6 0.4 0.2" />
+    <material name="grid" texture="grid" texrepeat="10 10" reflectance="0.2" />
+    <mesh name="MHS_MainBody_v16" content_type="model/obj" file="./meshes/MHS_MainBody_v16.obj" />
+    <mesh name="MHS_TopBlades_v16" content_type="model/obj" file="./meshes/MHS_TopBlades_v16.obj" />
+    <mesh name="MHS_BottomBlades_v16" content_type="model/obj" file="./meshes/MHS_BottomBlades_v16.obj" />
+    <mesh name="MHS_Leg02_v16" content_type="model/obj" file="./meshes/MHS_Leg02_v16.obj" />
+    <mesh name="MHS_Leg01_v16" content_type="model/obj" file="./meshes/MHS_Leg01_v16.obj" />
+    <mesh name="MHS_Leg03_v16" content_type="model/obj" file="./meshes/MHS_Leg03_v16.obj" />
+    <mesh name="MHS_Leg04_v16" content_type="model/obj" file="./meshes/MHS_Leg04_v16.obj" />
+  </asset>
+  <worldbody>
+    <light pos="0 0 5" dir="0 0 -1" diffuse="0.8 0.8 0.8" />
+    <geom name="floor" type="plane" size="50 50 0.1" material="grid" />
+    <body name="Body_MHS_MainBody_v16" pos="0 0 1">
+      <inertial pos="0 3.42717e-08 7.635e-08" quat="0.707107 -7.49322e-06 7.49322e-06 0.707107" mass="1.8" diaginertia="0.000681019 0.000671023 0.000281004" />
+      <joint name="MHS_MainBody_v16" type="free" />
+      <geom type="mesh" mesh="MHS_MainBody_v16" />
+      <body name="Body_MHS_TopBlades_v16">
+        <inertial pos="0 0 0" mass="1e-06" diaginertia="1e-06 1e-06 1e-06" />
+        <geom type="mesh" mesh="MHS_TopBlades_v16" />
+      </body>
+      <body name="Body_MHS_BottomBlades_v16" quat="0.878817 0 0 0.477159">
+        <inertial pos="0 0 0" mass="1e-06" diaginertia="1e-06 1e-06 1e-06" />
+        <geom type="mesh" mesh="MHS_BottomBlades_v16" />
+      </body>
+      <body name="Body_Joint_Leg02_Axis" pos="-0.0799965 -0.0899998 0.013566" quat="0.935271 -0.0067858 -0.35341 0.0179581">
+        <inertial pos="0.0272261 0.0439872 -0.0315394" quat="0.865536 0.444434 -0.205426 -0.105482" mass="2e-06" diaginertia="2.00734e-06 2.00734e-06 2e-06" />
+        <geom pos="0.0544521 0.0879744 -0.0630787" quat="0.935272 0.00678581 0.35341 -0.0179581" type="mesh" mesh="MHS_Leg02_v16" />
+      </body>
+      <body name="Body_Joint_Leg01_Axis" pos="0.0804546 -0.0897671 0.013368" quat="0.955984 0.0438641 0.196236 0.213688">
+        <inertial pos="-0.0119623 0.0552335 -0.0219907" quat="0.823542 0.558528 0.0820325 0.0556347" mass="2e-06" diaginertia="2.00735e-06 2.00735e-06 2e-06" />
+        <geom pos="-0.0239246 0.110467 -0.0439815" quat="0.955984 -0.043864 -0.196236 -0.213688" type="mesh" mesh="MHS_Leg01_v16" />
+      </body>
+      <body name="Body_Joint_Leg03_Axis" pos="-0.0799965 0.0899998 0.013566" quat="0.935271 0.00678584 -0.35341 -0.0179581">
+        <inertial pos="0.0272261 -0.0439872 -0.0315394" quat="0.444434 0.865536 0.105482 0.205426" mass="2e-06" diaginertia="2.00734e-06 2.00734e-06 2e-06" />
+        <geom pos="0.0544521 -0.0879744 -0.0630787" quat="0.935272 -0.00678581 0.35341 0.0179581" type="mesh" mesh="MHS_Leg03_v16" />
+      </body>
+      <body name="Body_Joint_Leg04_Axis" pos="0.0804546 0.0898284 0.013315" quat="0.957431 0.0414179 0.224562 -0.176585">
+        <inertial pos="-0.0163495 -0.0563095 -0.0155485" quat="0.603712 0.784666 -0.11161 -0.0858709" mass="2e-06" diaginertia="2.00736e-06 2.00736e-06 2e-06" />
+        <geom pos="-0.032699 -0.112619 -0.0310971" quat="0.957431 -0.0414178 -0.224563 0.176585" type="mesh" mesh="MHS_Leg04_v16" />
+      </body>
+    </body>
+  </worldbody>
+</mujoco>
