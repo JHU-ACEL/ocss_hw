@@ -18,7 +18,7 @@ class ADMMSolver():
             n_ineq (int): number of inequality constraints
 
             xk (jnp.array): primal solution x
-            zk (jnp.array): consensus variable
+            zk (jnp.array): splitting variable
             lk (jnp.array): Lagrange variable
         """
         self.max_iter = max_iter
@@ -52,7 +52,7 @@ class ADMMSolver():
         Parameters:
             xk (jnp.array): Current primal variable
             uk (jnp.array): Current Lagrange variable
-            zk (jnp.array): Current consensus variable
+            zk (jnp.array): Current splitting variable
 
         Returns:
             xk (jnp.array): Updated solution to equality constrained problem
@@ -62,6 +62,6 @@ class ADMMSolver():
     def solve_qp(self, verbose: bool = False):
         """
         Solves the quadratic program by computing the
-            primal, Lagrange variable, and consensus variable updates.
+            primal, Lagrange variable, and splitting variable updates.
         """
         raise NotImplementedError("ADMMSolver.solve_qp has yet to be implemented")

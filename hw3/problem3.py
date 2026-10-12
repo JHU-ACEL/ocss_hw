@@ -19,7 +19,7 @@ def _(mo):
     1. `__init__`: the class constructor contains all of the parameters you'll need to define the constraints and the numerical values are from `Section IV` of the paper.
     2. `construct_dynamics_matrices`: fill out the expressions for the continuous time dynamics matrices $A$ and $B$ as given in `Equation 2` of the paper.
     3. `construct_constraints` is a shared function that is used to solve both `Problem 3` and `Problem 4`. This will correspond with `Equations 5, 7, 8, 9, 17, 18, 19` from the paper (i.e., all of the constraints for `Problem 3`), but some of these constraints will have to rewritten using change-of-variables techniques (`Equations 33 - 36`).
-    4. `solve_minimum_landing_error`: this method solves `Problem 3` by instantiating the necessary `cvxpy` variables ($x$, $u$, $z$, and $\Gamma$), calling `construct_constraints` to construct the necessary constraints array, and then solving the problem.
+    4. `solve_minimum_landing_error`: this method solves `Problem 3` by instantiating the necessary `cvxpy` variables, calling `construct_constraints` to construct the necessary constraints array, and then solving the problem.
     5. `solve_minimum_fuel_problem`: this method solves `Problem 4` and uses the output `solve_minimum_landing_error` to define $d_\text{P3}^*$.
 
 

@@ -34,13 +34,13 @@ def _(mo):
     Consider the convex quadratic program:
 
     \begin{align}
-        \underset{x}{\textrm{minimize}} \,\, & \frac{1}{2}x^TQx + q^Tx \nonumber \\
+        \underset{x}{\textrm{minimize}} \,\, & \frac{1}{2}x^TPx + p^Tx \nonumber \\
         \textrm{subject to}
         \,\,& Ax=b\nonumber \\
         \,\,&  Gx \leq h \nonumber\\
     \end{align}
 
-    where $x \in \mathbb{R}^n$, $Q \in \mathbf{S}^n_+$, and $q \in \mathbb{R}^n$.
+    where $x \in \mathbb{R}^n$, $P \in \mathbf{S}^n_+$, and $p \in \mathbb{R}^n$.
 
     The linear equality constraints are given by $A \in \mathbb{R}^{n_\text{eq} \times n}$ and $b \in \mathbb{R}^{n_\text{eq}}$.
 
@@ -58,8 +58,8 @@ def _(mo):
 def _(jnp):
     nx = 8
 
-    Q = jnp.diag(jnp.array([2, 3, 3, 4, 5, 8, 9., 10]))
-    q = jnp.array([-2, 3, 3, -14., -2., 2, 2, 17])
+    P = jnp.diag(jnp.array([2, 3, 3, 4, 5, 8, 9., 10]))
+    p = jnp.array([-2, 3, 3, -14., -2., 2, 2, 17])
 
     # Set equality constraints
     n_eq = 2
@@ -72,11 +72,11 @@ def _(jnp):
     n_ineq = 3
     G = jnp.array([[1., -1, -1, 1, 1, 0, 0, 0], [1, -18, 0, 0, 1, 1, -2, 3], [24, -1, 1., -12., 3, 4, 4, 14.]])
     h = jnp.array([-65, -17, -100.0])
-    return A, G, Q, b, h, n_eq, nx, q
+    return A, G, P, b, h, n_eq, nx, p
 
 
 @app.cell
-def _(A, G, Q, b, cp, h, jnp, n_eq, np, nx, q):
+def _(A, G, P, b, cp, h, jnp, n_eq, np, nx, p):
     assert jnp.linalg.matrix_rank(A) == n_eq
 
     # Define and solve the CVXPY problem.
@@ -84,7 +84,7 @@ def _(A, G, Q, b, cp, h, jnp, n_eq, np, nx, q):
     cons = []
     cons += [np.asarray(A) @ x_cvx == np.asarray(b)]
     cons += [np.asarray(G) @ x_cvx <= np.asarray(h)]
-    prob = cp.Problem(cp.Minimize((1/2)*cp.quad_form(x_cvx, np.asarray(Q)) + np.asarray(q).T @ x_cvx),
+    prob = cp.Problem(cp.Minimize((1/2)*cp.quad_form(x_cvx, np.asarray(P)) + np.asarray(p).T @ x_cvx),
                      cons)
     feasible = prob.solve()
 
@@ -109,12 +109,12 @@ def _(mo):
 
 
 @app.cell(disabled=True)
-def _(A, ADMMSolver, G, Q, b, h, q, rho):
+def _(A, ADMMSolver, G, P, b, h, p, rho):
     max_iter = 200
     eps_tol = 1e-3
 
     solver = ADMMSolver(rho=rho.value, max_iter=max_iter, tol=eps_tol)
-    solver.init_problem(Q, q, A, b, G, h)
+    solver.init_problem(P, p, A, b, G, h)
     x_admm, has_converged = solver.solve_qp()
     print(has_converged)
     return
