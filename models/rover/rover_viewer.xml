@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="m2020_viewer">
+  <compiler angle="radian" />
+  <option gravity="0 0 -3.71" timestep="0.002" />
+  <visual>
+    <headlight ambient="0.5 0.5 0.5" />
+  </visual>
+  <asset>
+    <mesh name="CHASSIS" content_type="model/obj" file="./meshes/CHASSIS.obj" />
+    <mesh name="CenterDifferential" content_type="model/obj" file="./meshes/CenterDifferential.obj" />
+    <mesh name="Left_Rocker" content_type="model/obj" file="./meshes/Left_Rocker.obj" />
+    <mesh name="Left_Bogie" content_type="model/obj" file="./meshes/Left_Bogie.obj" />
+    <mesh name="Steer_LeftRear" content_type="model/obj" file="./meshes/Steer_LeftRear.obj" />
+    <mesh name="Wheel_LeftRear" content_type="model/obj" file="./meshes/Wheel_LeftRear.obj" />
+    <mesh name="Wheel_LeftMiddle" content_type="model/obj" file="./meshes/Wheel_LeftMiddle.obj" />
+    <mesh name="Steer_LeftFront" content_type="model/obj" file="./meshes/Steer_LeftFront.obj" />
+    <mesh name="Wheel_LeftFront" content_type="model/obj" file="./meshes/Wheel_LeftFront.obj" />
+    <mesh name="Right_Rocker" content_type="model/obj" file="./meshes/Right_Rocker.obj" />
+    <mesh name="Right_Bogie" content_type="model/obj" file="./meshes/Right_Bogie.obj" />
+    <mesh name="Steer_RightRear" content_type="model/obj" file="./meshes/Steer_RightRear.obj" />
+    <mesh name="Wheel_RightRear" content_type="model/obj" file="./meshes/Wheel_RightRear.obj" />
+    <mesh name="Wheel_RightMiddle" content_type="model/obj" file="./meshes/Wheel_RightMiddle.obj" />
+    <mesh name="Steer_RightFront" content_type="model/obj" file="./meshes/Steer_RightFront.obj" />
+    <mesh name="Wheel_RightFront" content_type="model/obj" file="./meshes/Wheel_RightFront.obj" />
+    <mesh name="RSM" content_type="model/obj" file="./meshes/RSM.obj" />
+    <mesh name="RSM_Head" content_type="model/obj" file="./meshes/RSM_Head.obj" />
+    <mesh name="HGA_AZ" content_type="model/obj" file="./meshes/HGA_AZ.obj" />
+    <mesh name="HGA_EL" content_type="model/obj" file="./meshes/HGA_EL.obj" />
+    <mesh name="Arm_LINK_1" content_type="model/obj" file="./meshes/Arm_LINK_1.obj" />
+    <mesh name="Arm_LINK_2" content_type="model/obj" file="./meshes/Arm_LINK_2.obj" />
+    <mesh name="Arm_LINK_3" content_type="model/obj" file="./meshes/Arm_LINK_3.obj" />
+    <mesh name="Arm_LINK_4" content_type="model/obj" file="./meshes/Arm_LINK_4.obj" />
+    <mesh name="Arm_LINK_5" content_type="model/obj" file="./meshes/Arm_LINK_5.obj" />
+    <mesh name="Turret" content_type="model/obj" file="./meshes/Turret.obj" />
+    <mesh name="AbradingBitInTurretAtZeroFeed" content_type="model/obj" file="./meshes/AbradingBitInTurretAtZeroFeed.obj" />
+    <mesh name="StabilizerFarInTurret" content_type="model/obj" file="./meshes/StabilizerFarInTurret.obj" />
+    <mesh name="StabilizerNearInTurret" content_type="model/obj" file="./meshes/StabilizerNearInTurret.obj" />
+    <mesh name="WATSON_Camera_Cap" content_type="model/obj" file="./meshes/WATSON_Camera_Cap.obj" />
+    <mesh name="ContextImager_Cap" content_type="model/obj" file="./meshes/ContextImager_Cap.obj" />
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1="0.2 0.2 0.2" rgb2="0.3 0.3 0.3" />
+    <material name="grid" texture="grid" texrepeat="10 10" reflectance="0.1" />
+  </asset>
+  <worldbody>
+    <light pos="0 0 3" dir="0 0 -1" diffuse="0.8 0.8 0.8" />
+    <geom name="floor" type="plane" size="20 20 0.1" material="grid" />
+    <body name="rover" pos="0 0 0.51" gravcomp="1">
+      <freejoint name="rover_free" />
+      <geom name="rover_collision_box" type="box" size="1 1 0.5" mass="900" rgba="1 1 1 0" />
+      <inertial pos="0 0 0" mass="900" diaginertia="375 375 600" />
+      <body name="rover_visual_pose" pos="-0.7814295020294797 0.0009999868638054243 -0.5075899951138307" quat="0 1 0 0">
+        <body name="Body_Chassis">
+          <geom pos="0.09002 0 -1.13338" quat="1 0 0 0" type="mesh" mesh="CHASSIS" contype="0" conaffinity="0" mass="0" />
+          <body name="Body_MHS_DebrisShield" pos="0.09002 0 -1.13338">
+          </body>
+          <body name="Body_Differential" pos="-0.05198 0 -1.13338">
+            <geom pos="0.142 0 0" quat="1 0 0 0" type="mesh" mesh="CenterDifferential" contype="0" conaffinity="0" mass="0" />
+            <body name="Frame_DIFF">
+            </body>
+          </body>
+          <body name="Body_RockerLeft" pos="0.30402 -0.79959 -0.89288">
+            <geom pos="-0.214 0.79959 -0.2405" quat="1 0 0 0" type="mesh" mesh="Left_Rocker" contype="0" conaffinity="0" mass="0" />
+            <body name="Body_BogieLeft" pos="-0.754 -0.12 0.23">
+              <geom pos="0.54 0.91959 -0.4705" quat="1 0 0 0" type="mesh" mesh="Left_Bogie" contype="0" conaffinity="0" mass="0" />
+              <body name="Body_SteerLeftRear" pos="-0.625 -0.14291 0.4">
+                <geom pos="1.165 1.0625 -0.8705" type="mesh" mesh="Steer_LeftRear" contype="0" conaffinity="0" mass="0" />
+                <body name="Body_WheelLeftRear">
+                  <geom pos="1.165 1.0625 -0.8705" quat="1 0 0 0" type="mesh" mesh="Wheel_LeftRear" contype="0" conaffinity="0" mass="0" />
+                  <body name="Frame_WHEEL_LR">
+                  </body>
+                </body>
+                <body name="Frame_STEER_LR">
+                </body>
+              </body>
+              <body name="Body_WheelLeftMiddle" pos="0.44998 -0.26491 0.4">
+                <geom pos="0.09002 1.1845 -0.8705" quat="1 0 0 0" type="mesh" mesh="Wheel_LeftMiddle" contype="0" conaffinity="0" mass="0" />
+                <body name="Frame_WHEEL_LM">
+                </body>
+              </body>
+              <body name="Frame_BOGIE_L" quat="0.707105 -0.707108 0 0">
+              </body>
+            </body>
+            <body name="Body_SteerLeftFront" pos="0.881 -0.26291 0.63">
+              <geom pos="-1.095 1.0625 -0.8705" type="mesh" mesh="Steer_LeftFront" contype="0" conaffinity="0" mass="0" />
+              <body name="Body_WheelLeftFront">
+                <geom pos="-1.095 1.0625 -0.8705" quat="1 0 0 0" type="mesh" mesh="Wheel_LeftFront" contype="0" conaffinity="0" mass="0" />
+                <body name="Frame_WHEEL_LF">
+                </body>
+              </body>
+              <body name="Frame_STEER_LF">
+              </body>
+            </body>
+            <body name="Frame_ROCKER_L" quat="0.707105 -0.707108 0 0">
+            </body>
+          </body>
+          <body name="Body_RockerRight" pos="0.30402 0.79959 -0.89288">
+            <geom pos="-0.214 -0.79959 -0.2405" quat="1 0 0 0" type="mesh" mesh="Right_Rocker" contype="0" conaffinity="0" mass="0" />
+            <body name="Body_BogieRight" pos="-0.754 0.12 0.23">
+              <geom pos="0.54 -0.91959 -0.4705" quat="1 0 0 0" type="mesh" mesh="Right_Bogie" contype="0" conaffinity="0" mass="0" />
+              <body name="Body_SteerRightRear" pos="-0.625 0.14291 0.4">
+                <geom pos="1.165 -1.0625 -0.8705" type="mesh" mesh="Steer_RightRear" contype="0" conaffinity="0" mass="0" />
+                <body name="Body_WheelRightRear">
+                  <geom pos="1.165 -1.0625 -0.8705" quat="1 0 0 0" type="mesh" mesh="Wheel_RightRear" contype="0" conaffinity="0" mass="0" />
+                  <body name="Frame_WHEEL_RR">
+                  </body>
+                </body>
+                <body name="Frame_STEER_RR">
+                </body>
+              </body>
+              <body name="Body_WheelRightMiddle" pos="0.44998 0.26491 0.4">
+                <geom pos="0.09002 -1.1845 -0.8705" quat="1 0 0 0" type="mesh" mesh="Wheel_RightMiddle" contype="0" conaffinity="0" mass="0" />
+                <body name="Frame_WHEEL_RM">
+                </body>
+              </body>
+              <body name="Frame_BOGIE_R" quat="0.707105 -0.707108 0 0">
+              </body>
+            </body>
+            <body name="Body_SteerRightFront" pos="0.881 0.26291 0.63">
+              <geom pos="-1.095 -1.0625 -0.8705" quat="1 0 0 0" type="mesh" mesh="Steer_RightFront" contype="0" conaffinity="0" mass="0" />
+              <body name="Body_WheelRightFront">
+                <geom pos="-1.095 -1.0625 -0.8705" quat="1 0 0 0" type="mesh" mesh="Wheel_RightFront" contype="0" conaffinity="0" mass="0" />
+                <body name="Frame_WHEEL_RF">
+                </body>
+              </body>
+              <body name="Frame_STEER_RF">
+              </body>
+            </body>
+            <body name="Frame_ROCKER_R" quat="0.707105 -0.707108 0 0">
+            </body>
+          </body>
+          <body name="Body_RSM_AZ" pos="0.804037 0.559028 -1.91927" quat="0.00872622 0 0 0.999962">
+            <geom pos="-0.714017 -0.559028 0.78589" quat="1 0 0 0" type="mesh" mesh="RSM" contype="0" conaffinity="0" mass="0" />
+            <body name="Body_RSM_EL" quat="-0.700908 1.8763e-06 0.713252 1.8763e-06">
+              <geom pos="-0.714017 -0.559028 0.78589" quat="1 0 0 0" type="mesh" mesh="RSM_Head" contype="0" conaffinity="0" mass="0" />
+              <body name="Frame_MEL" quat="0.707105 -0.707108 0 0">
+              </body>
+              <body name="Frame_SCI" pos="-0.071379 -0.112 -0.114609" quat="1.32679e-06 1 0 0">
+              </body>
+              <body name="Frame_SCRMI" pos="-0.062479 -0.112 -0.213609" quat="1.32679e-06 1 0 0">
+              </body>
+              <body name="Frame_SCLIBS" pos="-0.062479 -0.112 -0.213609" quat="1.32679e-06 1 0 0">
+              </body>
+              <body name="Frame_SCIR" pos="-0.062479 -0.112 -0.213609" quat="1.32679e-06 1 0 0">
+              </body>
+              <body name="Frame_MCL" pos="-0.085135 -0.126634 -0.065127" quat="0.99994 0 0 0.0109975">
+              </body>
+              <body name="Frame_MCR" pos="-0.085134 0.121506 -0.065128" quat="0.999939 0 0 -0.0110012">
+              </body>
+              <body name="Frame_NCL" pos="0.080595 -0.214392 -0.057109" quat="0.707107 2.23686e-06 0.707107 2.23686e-06">
+              </body>
+              <body name="Frame_NCR" pos="0.080595 0.209607 -0.057111" quat="0.707107 2.23686e-06 0.707107 2.23686e-06">
+              </body>
+              <body name="Frame_NCL_FOV" pos="0.143595 -0.214392 -0.057109" quat="0.707107 2.23686e-06 0.707107 2.23686e-06">
+              </body>
+              <body name="Frame_NCR_FOV" pos="0.143595 0.209607 -0.057111" quat="0.707107 2.23686e-06 0.707107 2.23686e-06">
+              </body>
+            </body>
+            <body name="Frame_MAZ">
+            </body>
+          </body>
+          <body name="Body_HGA_AZ" pos="-0.36998 -0.475 -1.13288" quat="0.976296 0 0 0.216439">
+            <geom pos="0.46 0.475 -0.0005" quat="1 0 0 0" type="mesh" mesh="HGA_AZ" contype="0" conaffinity="0" mass="0" />
+            <body name="Body_HGA_EL" pos="0 0 -0.248" quat="0.92388 0.382683 0 0">
+              <geom pos="0.46 0.475 0.2475" quat="1 0 0 0" type="mesh" mesh="HGA_EL" contype="0" conaffinity="0" mass="0" />
+              <body name="Frame_ANT" pos="0.2084 0 0" quat="0.382686 0.923879 0 0">
+              </body>
+            </body>
+            <body name="Frame_HGAG" quat="1.32679e-06 1 0 0">
+            </body>
+          </body>
+          <body name="Body_RA_Base" pos="0.09002 0 -1.13338">
+            <body name="Body_RA_Link1" pos="1.1756 -0.4515 0.3116">
+              <geom pos="-1.1756 0.4515 -0.3116" quat="1 0 0 0" type="mesh" mesh="Arm_LINK_1" contype="0" conaffinity="0" mass="0" />
+              <body name="Body_RA_Link2" pos="0.166 0 0">
+                <geom pos="-1.3416 0.4515 -0.3116" quat="1 0 0 0" type="mesh" mesh="Arm_LINK_2" contype="0" conaffinity="0" mass="0" />
+                <body name="Body_RA_Link3" pos="0.8194 0 0">
+                  <geom pos="-2.161 0.4515 -0.3116" quat="1 0 0 0" type="mesh" mesh="Arm_LINK_3" contype="0" conaffinity="0" mass="0" />
+                  <body name="Body_RA_Link4" pos="0.7533 0 0">
+                    <geom pos="-2.9143 0.4515 -0.3116" quat="1 0 0 0" type="mesh" mesh="Arm_LINK_4" contype="0" conaffinity="0" mass="0" />
+                    <body name="Body_RA_Link5" pos="-0.1757 0.1791 0">
+                      <geom pos="-2.7386 0.2724 -0.3116" quat="1 0 0 0" type="mesh" mesh="Arm_LINK_5" contype="0" conaffinity="0" mass="0" />
+                      <body name="Body_Turret" pos="-2.7386 0.2724 -0.3116">
+                        <geom type="mesh" mesh="Turret" contype="0" conaffinity="0" mass="0" />
+                        <body name="Body_CorerFeed" pos="2.5301 -0.272349 -0.0168656">
+                          <geom pos="0.208499 -5.1e-05 -3.438e-05" quat="1 0 0 0" type="mesh" mesh="AbradingBitInTurretAtZeroFeed" contype="0" conaffinity="0" mass="0" />
+                        </body>
+                        <body name="Body_StabilizerFar" pos="2.5301 -0.272349 -0.0168656">
+                          <geom pos="0.208499 -5.1e-05 -3.438e-05" quat="1 0 0 0" type="mesh" mesh="StabilizerFarInTurret" contype="0" conaffinity="0" mass="0" />
+                        </body>
+                        <body name="Body_StabilizerNear" pos="2.5301 -0.272349 -0.0168656">
+                          <geom pos="0.208499 -5.1e-05 -3.438e-05" quat="1 0 0 0" type="mesh" mesh="StabilizerNearInTurret" contype="0" conaffinity="0" mass="0" />
+                        </body>
+                        <body name="Body_WATSON_Cap" pos="2.6025 -0.581204 -0.0309103">
+                          <geom pos="-2.6025 0.581204 0.0309103" quat="1 0 0 0" type="mesh" mesh="WATSON_Camera_Cap" contype="0" conaffinity="0" mass="0" />
+                        </body>
+                        <body name="Body_SHERLOC_Cap" pos="2.86084 -0.58439 0.0124626">
+                          <geom pos="-2.86084 0.58439 -0.0124626" quat="1 0 0 0" type="mesh" mesh="ContextImager_Cap" contype="0" conaffinity="0" mass="0" />
+                        </body>
+                      </body>
+                      <body name="Frame_RA5">
+                      </body>
+                      <body name="Frame_RA6" pos="0 0 -0.208">
+                      </body>
+                      <body name="Frame_TURRET" pos="0 0 -0.3285">
+                      </body>
+                      <body name="Frame_DOCKING_POST" pos="0.29715 0 -0.3285">
+                      </body>
+                      <body name="Frame_DRILL" pos="0.373 0 -0.3285">
+                      </body>
+                      <body name="Frame_FCS" pos="-0.37138 0 -0.2704" quat="1.32679e-06 0 0 1">
+                      </body>
+                      <body name="Frame_GDRT" pos="-0.283436 0.237831 -0.2625" quat="0.342021 0 0 0.939692">
+                      </body>
+                      <body name="Frame_PIXL" pos="0 0.3577 -0.3385" quat="0.707105 0 0 0.707108">
+                      </body>
+                      <body name="Frame_SHERLOC" pos="0.143585 -0.305411 -0.292126" quat="0.819152 0 0 -0.573576">
+                      </body>
+                      <body name="Frame_WATSON" pos="-0.115541 -0.317445 -0.342785" quat="0.573577 0 0 -0.819151">
+                      </body>
+                    </body>
+                    <body name="Frame_RA4" quat="0.707105 0.707108 0 0">
+                    </body>
+                  </body>
+                  <body name="Frame_RA3" quat="0.707105 0.707108 0 0">
+                  </body>
+                </body>
+                <body name="Frame_RA2" quat="0.707105 0.707108 0 0">
+                </body>
+              </body>
+              <body name="Frame_RA1">
+              </body>
+              <body name="Frame_CAL_PIXL" pos="-0.1082 -0.01669 -0.025" quat="0.258821 0 0 0.965925">
+              </body>
+            </body>
+          </body>
+          <body name="Frame_RNAV">
+          </body>
+          <body name="Frame_RMECH" pos="0.09002 0 -1.13338">
+          </body>
+          <body name="Frame_FHCB" pos="0.95652 0.074 -0.76858">
+          </body>
+          <body name="Frame_FHC1" pos="1.03958 0.226094 -0.760608" quat="0.844818 -0.0739773 0.5279 0.0461618">
+          </body>
+          <body name="Frame_FHC2" pos="1.05159 -0.002264 -0.754746" quat="0.844818 0.0739773 0.5279 -0.0461618">
+          </body>
+          <body name="Frame_FHC3" pos="1.05159 0.150264 -0.754746" quat="0.844818 -0.0739773 0.5279 0.0461618">
+          </body>
+          <body name="Frame_FHC4" pos="1.03958 -0.078094 -0.760608" quat="0.844818 0.0739773 0.5279 -0.0461618">
+          </body>
+          <body name="Frame_FHC1_FOV" pos="1.09534 0.237039 -0.733411" quat="0.844818 -0.0739773 0.5279 0.0461618">
+          </body>
+          <body name="Frame_FHC2_FOV" pos="1.10736 -0.0132091 -0.727549" quat="0.844818 0.0739773 0.5279 -0.0461618">
+          </body>
+          <body name="Frame_FHC3_FOV" pos="1.10736 0.161209 -0.727549" quat="0.844818 -0.0739773 0.5279 0.0461618">
+          </body>
+          <body name="Frame_FHC4_FOV" pos="1.09534 -0.0890391 -0.733411" quat="0.844818 0.0739773 0.5279 -0.0461618">
+          </body>
+          <body name="Frame_RHC1" pos="-1.00766 -0.467 -0.77468" quat="1.22581e-06 -0.382655 5.07704e-07 0.923891">
+          </body>
+          <body name="Frame_RHC2" pos="-1.00766 0.467 -0.77468" quat="1.22581e-06 -0.382655 5.07704e-07 0.923891">
+          </body>
+          <body name="Frame_RHC1_FOV" pos="-1.0522 -0.467 -0.73013" quat="1.22581e-06 -0.382655 5.07704e-07 0.923891">
+          </body>
+          <body name="Frame_RHC2_FOV" pos="-1.0522 0.467 -0.73013" quat="1.22581e-06 -0.382655 5.07704e-07 0.923891">
+          </body>
+          <body name="Frame_ATS1" pos="0.846027 0.597543 -1.44188" quat="0.241921 0.241922 0.664436 0.664434">
+          </body>
+          <body name="Frame_ATS2" pos="0.749647 0.576177 -1.49028" quat="0.596472 -0.596474 -0.379764 0.379762">
+          </body>
+          <body name="Frame_ATS3" pos="0.816326 0.50341 -1.44188" quat="0.696367 0.69637 0.122762 0.122762">
+          </body>
+          <body name="Frame_ATS4" pos="0.896872 -0.63405 -0.879074" quat="0.499998 -0.5 0.500002 -0.5">
+          </body>
+          <body name="Frame_ATS5" pos="0.896872 0.63405 -0.830674" quat="0.499998 0.5 0.500002 0.5">
+          </body>
+          <body name="Frame_HS" pos="0.743443 0.576337 -1.50598" quat="0.632459 -0.316225 0.632455 0.316225">
+          </body>
+          <body name="Frame_ICU" pos="0.179008 -0.209 -1.04738" quat="1.32679e-06 1 0 0">
+          </body>
+          <body name="Frame_RDS" pos="0.138992 -0.298597 -1.17948" quat="1.32271e-06 0.996919 -0.0784413 -1.04076e-07">
+          </body>
+          <body name="Frame_TIRS" pos="0.802591 0.616374 -1.55388" quat="0.719229 0 0 -0.694774">
+          </body>
+          <body name="Frame_WS1" pos="0.854257 0.597514 -1.59588" quat="0.998644 0 0 0.0520595">
+          </body>
+          <body name="Frame_WS2" pos="0.801386 0.623898 -1.62438" quat="0.453935 0 0 0.891035">
+          </body>
+          <body name="Frame_MOXIE" pos="-0.193552 -0.508 -1.04738">
+          </body>
+          <body name="Frame_MI" pos="0.804037 0.559028 -1.13288">
+          </body>
+          <body name="Frame_RIMUA" pos="0.310906 -0.441586 -1.04738" quat="0.707105 0 0 -0.707108">
+          </body>
+          <body name="Frame_RIMUB" pos="0.403906 -0.441586 -1.04738" quat="0.707105 0 0 -0.707108">
+          </body>
+          <body name="Frame_RIMFAX" pos="-0.79478 0 -0.71724" quat="0.665817 -0.238087 -0.238088 0.66582">
+          </body>
+          <body name="Frame_HGAS" pos="-0.36998 -0.475 -1.13288" quat="0.976298 0 0 0.216432">
+          </body>
+          <body name="Frame_RA_BASE" pos="0.967871 -0.561 -0.90838">
+          </body>
+          <body name="Frame_CAL_MC1" pos="-0.28518 0.414008 -1.30252" quat="1.32679e-06 1 0 0">
+          </body>
+          <body name="Frame_CAL_MC2" pos="-0.23089 0.436008 -1.26302" quat="1.32679e-06 1 0 0">
+          </body>
+          <body name="Frame_CAL_SC" pos="-0.73817 0.5365 -1.29482" quat="0.298819 0.640863 0.640865 0.29882">
+          </body>
+          <body name="Frame_CAL_SHERLOC" pos="1.32087 0.488 -0.87888">
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>
