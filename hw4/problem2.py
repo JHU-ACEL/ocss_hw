@@ -88,6 +88,10 @@ def _(mo):
     - Define an obstacle cost, so that the rover goes around the obstacles
     - **Compare** trajectories produced by both optimizers, especially as you vary the number of samples, iterations, and cost weights.
     - Run a simulation in mujuco
+
+    ## JAX-practices
+    The functions in the `MppiCemSolver` class that have the `@eqx.filter_jit` decorator on them must be JIT-compatible.
+    Hint: Use `jax.lax.scan` and `jax.vmap`
     """)
     return
 
